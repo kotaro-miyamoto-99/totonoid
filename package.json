@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "shisha-log",
   "private": true,
   "scripts": {
     "build": "turbo run build",
