@@ -2,7 +2,6 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Thermometer, Droplets, Clock } from "lucide-react"
-import { TemperatureChart } from "@/components/temperature-chart"
 import { useState } from "react"
 
 export function Dashboard() {
@@ -38,15 +37,6 @@ export function Dashboard() {
         <CardContent>
           <div className="text-2xl font-bold text-nature-800">10分</div>
           <p className="text-xs text-nature-600">あなたの整いに最適なサウナ滞在時間です</p>
-        </CardContent>
-      </Card>
-      <Card className="col-span-full">
-        <CardHeader>
-          <CardTitle>温度記録の推移</CardTitle>
-          <CardDescription>過去のサウナ体験と整い度の関係を表示しています</CardDescription>
-        </CardHeader>
-        <CardContent className="pl-2">
-          <TemperatureChart />
         </CardContent>
       </Card>
       <Card className="col-span-full">
