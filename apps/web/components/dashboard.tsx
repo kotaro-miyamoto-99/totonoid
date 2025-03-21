@@ -10,34 +10,34 @@ export function Dashboard() {
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <Card>
+      <Card className="bg-wood-50 border-wood-100">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">最適整い温度</CardTitle>
-          <Thermometer className="h-4 w-4 text-red-500" />
+          <CardTitle className="text-sm font-medium text-wood-900">最適整い温度</CardTitle>
+          <Thermometer className="h-4 w-4 text-wood-600" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{optimalTemp}°C</div>
-          <p className="text-xs text-muted-foreground">あなたの記録から分析した最適な整い温度です</p>
+          <div className="text-2xl font-bold text-wood-800">{optimalTemp}°C</div>
+          <p className="text-xs text-wood-600">あなたの記録から分析した最適な整い温度です</p>
         </CardContent>
       </Card>
-      <Card>
+      <Card className="bg-water-50 border-water-100">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">推奨水風呂温度</CardTitle>
-          <Droplets className="h-4 w-4 text-blue-500" />
+          <CardTitle className="text-sm font-medium text-water-900">推奨水風呂温度</CardTitle>
+          <Droplets className="h-4 w-4 text-water-600" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">15°C</div>
-          <p className="text-xs text-muted-foreground">最適な整いのための水風呂温度です</p>
+          <div className="text-2xl font-bold text-water-800">15°C</div>
+          <p className="text-xs text-water-600">最適な整いのための水風呂温度です</p>
         </CardContent>
       </Card>
-      <Card>
+      <Card className="bg-nature-50 border-nature-100">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">推奨サウナ時間</CardTitle>
-          <Clock className="h-4 w-4 text-amber-500" />
+          <CardTitle className="text-sm font-medium text-nature-900">推奨サウナ時間</CardTitle>
+          <Clock className="h-4 w-4 text-nature-600" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">10分</div>
-          <p className="text-xs text-muted-foreground">あなたの整いに最適なサウナ滞在時間です</p>
+          <div className="text-2xl font-bold text-nature-800">10分</div>
+          <p className="text-xs text-nature-600">あなたの整いに最適なサウナ滞在時間です</p>
         </CardContent>
       </Card>
       <Card className="col-span-full">
