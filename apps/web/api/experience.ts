@@ -1,4 +1,14 @@
 import type { SaunaExperience } from '@/types/experience'
+import type { CreateExperienceInput } from '@/schemas/experience'
+
+export async function createExperience(data: CreateExperienceInput): Promise<SaunaExperience> {
+  // モックデータ
+  return {
+    id: Math.random().toString(36).slice(2),
+    ...data,
+    createdAt: new Date().toISOString(),
+  }
+}
 
 export async function getRecentExperiences(): Promise<SaunaExperience[]> {
   const res = await fetch('http://localhost:3000/api/experiences', {

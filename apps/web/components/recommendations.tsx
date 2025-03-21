@@ -2,7 +2,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Thermometer } from "lucide-react"
 import { FacilityCard } from "./facility-card"
-import { mockFacilities, temperatureRanges } from "../data/mock-facilities"
+import { getFacilities } from "@/api/facilities"
+import type { Facility } from "@/types/facility"
+import { temperatureRanges } from "@/types/temperature"
 
 interface TemperatureCardProps {
   title: string
@@ -34,14 +36,12 @@ function TemperatureCard({ title, tempRange, description, facilities }: Temperat
 }
 
 export async function Recommendations() {
-  // 将来的にはAPIからデータを取得
-  // const facilities = await getFacilities();
-  const facilities = mockFacilities;
+  const facilities = await getFacilities();
 
   // ユーザーの好みの温度や位置情報に基づいてフィルタリング
   const nearbyFacilities = facilities.slice(0, 2);
-  const popularFacilities = facilities.filter(f => f.rating >= 4.7);
-  const perfectTempFacilities = facilities.filter(f => f.temperature === 90);
+  const popularFacilities = facilities.filter((f: Facility) => f.rating >= 4.7);
+  const perfectTempFacilities = facilities.filter((f: Facility) => f.temperature === 90);
 
   return (
     <div className="space-y-6">
@@ -85,9 +85,9 @@ export async function Recommendations() {
           <div className="grid gap-4 md:grid-cols-3">
             {temperatureRanges.map((range) => (
               <TemperatureCard
-                key={range.id}
+                key={range.title}
                 title={range.title}
-                tempRange={range.tempRange}
+                tempRange={range.range}
                 description={range.description}
                 facilities={range.facilities}
               />
