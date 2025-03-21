@@ -1,6 +1,9 @@
 {
   "name": "shisha-log",
   "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
