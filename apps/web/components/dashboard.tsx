@@ -1,11 +1,13 @@
-"use client"
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Thermometer, Droplets, Clock } from "lucide-react"
-import { useState } from "react"
+import { getDashboardData } from "@/api/dashboard"
+import { getRecentExperiences } from "@/api/experience"
 
-export function Dashboard() {
-  const [optimalTemp, setOptimalTemp] = useState(90)
+export async function Dashboard() {
+  const [dashboardData, recentExperiences] = await Promise.all([
+    getDashboardData(),
+    getRecentExperiences()
+  ])
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -17,7 +19,7 @@ export function Dashboard() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="text-3xl font-bold text-red-700">{optimalTemp}°C</div>
+          <div className="text-3xl font-bold text-red-700">{dashboardData.optimalTemperature}°C</div>
           <p className="text-xs text-red-600">あなたの記録から分析した最適な整い温度です</p>
         </CardContent>
       </Card>
@@ -27,7 +29,7 @@ export function Dashboard() {
           <Droplets className="h-4 w-4 text-water-600" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold text-water-800">15°C</div>
+          <div className="text-2xl font-bold text-water-800">{dashboardData.recommendedWaterTemperature}°C</div>
           <p className="text-xs text-water-600">最適な整いのための水風呂温度です</p>
         </CardContent>
       </Card>
@@ -37,8 +39,8 @@ export function Dashboard() {
           <Clock className="h-4 w-4 text-nature-600" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold text-nature-800">10分</div>
-          <p className="text-xs text-nature-600">あなたの整いに最適なサウナ滞在時間です</p>
+          <div className="text-2xl font-bold text-nature-800">{dashboardData.recommendedDuration}分</div>
+          <p className="text-xs text-nature-600">あなたの整いに最適なサウナ湯在時間です</p>
         </CardContent>
       </Card>
       <Card className="col-span-full">
@@ -48,20 +50,19 @@ export function Dashboard() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {recentExperiences.map((exp, i) => (
-              <div key={i} className="flex items-center justify-between border-b pb-2">
+            {recentExperiences.map((experience) => (
+              <div key={experience.id} className="flex items-center justify-between border-b pb-2">
                 <div>
-                  <p className="font-medium">{exp.location}</p>
-                  <p className="text-sm text-muted-foreground">{exp.date}</p>
+                  <p className="font-medium">{new Date(experience.createdAt).toLocaleDateString('ja-JP')}</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-1">
                     <Thermometer className="h-4 w-4 text-red-500" />
-                    <span>{exp.temperature}°C</span>
+                    <span>{experience.temperature}°C</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <span className="text-sm">整い度:</span>
-                    <span className="font-bold">{exp.satisfaction}/5</span>
+                    <span className="font-bold">{experience.satisfaction}/5</span>
                   </div>
                 </div>
               </div>
@@ -73,24 +74,4 @@ export function Dashboard() {
   )
 }
 
-const recentExperiences = [
-  {
-    location: "サウナしきじ",
-    date: "2023/12/15",
-    temperature: 90,
-    satisfaction: 5,
-  },
-  {
-    location: "サウナ&スパ カプセル",
-    date: "2023/12/10",
-    temperature: 95,
-    satisfaction: 4,
-  },
-  {
-    location: "天然温泉 テルマー湯",
-    date: "2023/12/05",
-    temperature: 85,
-    satisfaction: 3,
-  },
-]
 
