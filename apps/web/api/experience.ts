@@ -11,15 +11,15 @@ export async function createExperience(data: CreateExperienceInput): Promise<Sau
 }
 
 export async function getRecentExperiences(): Promise<SaunaExperience[]> {
-  const res = await fetch('http://localhost:3000/api/experiences', {
-    next: {
-      revalidate: 60,
-    },
-  })
+  // const res = await fetch('http://localhost:3000/api/experiences', {
+  //   next: {
+  //     revalidate: 60,
+  //   },
+  // })
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch recent experiences')
-  }
+  // if (!res.ok) {
+  //   throw new Error('Failed to fetch recent experiences')
+  // }
 
   
 
