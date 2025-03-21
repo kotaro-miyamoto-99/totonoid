@@ -9,14 +9,16 @@ export function Dashboard() {
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <Card className="bg-wood-50 border-wood-100">
+      <Card className="bg-gradient-to-br from-red-50 to-amber-50 border-red-200 shadow-sm hover:shadow-md hover:border-red-300 transition-all">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium text-wood-900">最適整い温度</CardTitle>
-          <Thermometer className="h-4 w-4 text-wood-600" />
+          <CardTitle className="text-sm font-medium text-red-900">最適整い温度</CardTitle>
+          <div className="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center">
+            <Thermometer className="h-4 w-4 text-red-600" />
+          </div>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold text-wood-800">{optimalTemp}°C</div>
-          <p className="text-xs text-wood-600">あなたの記録から分析した最適な整い温度です</p>
+          <div className="text-3xl font-bold text-red-700">{optimalTemp}°C</div>
+          <p className="text-xs text-red-600">あなたの記録から分析した最適な整い温度です</p>
         </CardContent>
       </Card>
       <Card className="bg-water-50 border-water-100">
